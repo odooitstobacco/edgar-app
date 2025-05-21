@@ -84,7 +84,7 @@ elif "Código" in opcion:
 
                 """, language="python")
                 
-    st.markdown("También puedes ver el código completo en [mi repositorio en GitHub](https://github.com/tu_usuario/mi-portafolio).")
+    st.markdown("También puedes ver el código completo en [mi repositorio en GitHub](https://github.com/odooitstobacco/edgar-app).")
 
 # -----------------------
 # PIE DE PÁGINA
