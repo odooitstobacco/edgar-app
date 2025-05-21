@@ -54,7 +54,7 @@ elif "Contacto" in opcion:
     st.markdown('''
     - 📧 [caamal.edgar@gmail.com](mailto:caamal.edgar@gmail.com)
     - 🌐 [GitHub](https://github.com/caamaledgar)
-    - 💼 [LinkedIn](www.linkedin.com/in/edcaamal)
+    - 💼 [LinkedIn](https://www.linkedin.com/in/edcaamal)
     ''')
 
 elif "Código" in opcion:
