@@ -1,4 +1,7 @@
 import streamlit as st
+from cursos_data import mostrar_timeline_certificaciones
+from streamlit_timeline import timeline
+
 
 # -----------------------
 # CONFIGURACIÓN DE LA PÁGINA
@@ -10,7 +13,9 @@ st.set_page_config(page_title="Portafolio", page_icon="🧑‍💻", layout="wid
 # Sidebar de navegación
 st.sidebar.markdown("## 🧭 Navegación")
 
-opcion = st.sidebar.selectbox("Elegir", ["🏠 Inicio", "📁 Habilidades", "📬 Contacto", "💻 Código"])
+opcion = st.sidebar.selectbox("Elegir", [
+    "🏠 Inicio", "📁 Habilidades", "🌐 Cursos"
+    "📬 Contacto", "💻 Código"])
 
 # FOTO DE PERFIL
 col1, col2, col3 = st.columns([1, 2, 1])
@@ -67,7 +72,8 @@ elif "Habilidades" in opcion:
     - **Herramientas**: Git, Docker, Streamlit, AWS
     - **IA/ML**: scikit-learn, TensorFlow, OpenAI API
     ''')
-
+elif "Cursos" in opcion:
+    mostrar_timeline_certificaciones()
 elif "Contacto" in opcion:
     st.markdown("## 📬 Contacto")
     st.markdown('''
