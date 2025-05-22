@@ -1,7 +1,5 @@
 import streamlit as st
-from cursos_data import mostrar_timeline_certificaciones
-from streamlit_timeline import timeline
-
+from cursos_data import timeline_data
 
 # -----------------------
 # CONFIGURACIÓN DE LA PÁGINA
@@ -14,8 +12,11 @@ st.set_page_config(page_title="Portafolio", page_icon="🧑‍💻", layout="wid
 st.sidebar.markdown("## 🧭 Navegación")
 
 opcion = st.sidebar.selectbox("Elegir", [
-    "🏠 Inicio", "📁 Habilidades", "🌐 Cursos"
-    "📬 Contacto", "💻 Código"])
+    "🏠 Inicio", 
+    "📁 Habilidades", 
+    "🌐 Cursos",
+    "📬 Contacto", 
+    "💻 Código"])
 
 # FOTO DE PERFIL
 col1, col2, col3 = st.columns([1, 2, 1])
@@ -73,7 +74,26 @@ elif "Habilidades" in opcion:
     - **IA/ML**: scikit-learn, TensorFlow, OpenAI API
     ''')
 elif "Cursos" in opcion:
-    mostrar_timeline_certificaciones()
+    # Mostrar título principal
+    st.title(timeline_data["title"]["text"]["headline"])
+    st.info(timeline_data["title"]["text"]["text"])
+    anno_actual = None
+    # Recorrer eventos y mostrar cada uno
+    for event in timeline_data["events"]:
+         fecha = event["start_date"]
+         titulo = event["text"]["headline"]
+         institucion = event["text"]["text"]
+
+         anno = fecha["year"]
+         if anno != anno_actual:
+            st.markdown(f"##### 📅 {anno}")
+            anno_actual = anno
+    
+         fecha_str = f"{fecha['day']:02d}/{fecha['month']:02d}/{fecha['year']}"
+         mensaje = f"{fecha_str} — {titulo}\n{institucion}"
+         st.code(mensaje)
+
+
 elif "Contacto" in opcion:
     st.markdown("## 📬 Contacto")
     st.markdown('''
@@ -85,7 +105,8 @@ elif "Contacto" in opcion:
 elif "Código" in opcion:
     st.markdown("## 💻 Código del Portafolio")
     st.markdown("Este portafolio fue desarrollado con [Streamlit](https://streamlit.io). A continuación puedes ver el código fuente de esta aplicación:")
-
+    st.write("El siguiente código es demostrativo del desarrollo de esta aplicación")
+    st.write("Visite la ultima actualización en el repositorio de github")
     with st.expander("📄 Sección inicial"):
         st.code("""
             import streamlit as st
@@ -100,8 +121,12 @@ elif "Código" in opcion:
             # Sidebar de navegación
             st.sidebar.markdown("## 🧭 Navegación")
 
-            opcion = st.sidebar.selectbox("Elegir", ["🏠 Inicio", "📁 Habilidades", "📬 Contacto", "💻 Código"])
-
+            opcion = st.sidebar.selectbox("Elegir", [
+                "🏠 Inicio", 
+                "📁 Habilidades", 
+                "🌐 Cursos",
+                "📬 Contacto", 
+                "💻 Código"])
             # FOTO DE PERFIL
             col1, col2, col3 = st.columns([1, 2, 1])
             with col2:
@@ -166,6 +191,67 @@ elif "Código" in opcion:
                 - **Herramientas**: Git, Docker, Streamlit, AWS
                 - **IA/ML**: scikit-learn, TensorFlow, OpenAI API
                 ''')
+        """, language="python")
+
+    with st.expander("📄 Opción de navegación - Cursos "):
+        st.write("Crear el archivo de datos cursos_data.py")
+        st.code("""
+            # Datos para la línea del tiempo en formato TimelineJS (JSON)
+            # Los datos deben estar en Orden Cronologico Descendente de preferencia
+
+            timeline_data = {
+                "title": {
+                    "text": {
+                        "headline": "Cursos y Certificaciones",
+                        "text": "Línea del tiempo de formación continua de Edgar David Caamal Dzulu"
+                    }
+                },
+                "events": [
+                    {
+                        "start_date": {"year": 2023, "month": 5, "day": 2},
+                        "text": {
+                            "headline": "Introducción al Desarrollo Web",
+                            "text": "Google Activate"
+                        }
+                    },
+                    {
+                        "start_date": {"year": 2023, "month": 5, "day": 1},
+                        "text": {
+                            "headline": "Desarrollo de Apps Móviles",
+                            "text": "Google Activate"
+                        }
+                    },
+                # ... Puede añadir más eventos
+                ]
+            }        
+        """, language="python")
+        st.write("Actualizar el archivo principal stramlit_app.py")
+        st.code("""
+            import streamlit as st
+            from cursos_data import timeline_data
+        """, language="python")
+
+        st.write("Codigo de la opción")
+        st.code("""
+            elif "Cursos" in opcion:
+                # Mostrar título principal
+                st.title(timeline_data["title"]["text"]["headline"])
+                st.info(timeline_data["title"]["text"]["text"])
+                anno_actual = None
+                # Recorrer eventos y mostrar cada uno
+                for event in timeline_data["events"]:
+                    fecha = event["start_date"]
+                    titulo = event["text"]["headline"]
+                    institucion = event["text"]["text"]
+
+                    anno = fecha["year"]
+                    if anno != anno_actual:
+                        st.markdown(f"##### 📅 {anno}")
+                        anno_actual = anno
+                
+                    fecha_str = f"{fecha['day']:02d}/{fecha['month']:02d}/{fecha['year']}"
+                    mensaje = f"{fecha_str} — {titulo}\n{institucion}"
+                    st.code(mensaje)
         """, language="python")
         
     with st.expander("📄 Opción de navegación - Contacto"):
