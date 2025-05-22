@@ -24,7 +24,6 @@ if "Inicio" in opcion:
     ### *Desarrollador | Entusiasta de la IA | Freelancer | Docente del CONALEP*
     ''')
 
-
     # -----------------------
     # SOBRE MÍ
     # -----------------------
@@ -38,6 +37,26 @@ if "Inicio" in opcion:
     - 🛠️ Trabajo con Python, JavaScript, Java, y más.
 
     ''')
+
+    # -----------------------
+    # Formación Académica
+    # -----------------------
+    st.markdown('''
+    ## 💼 Formación Académica ''')
+
+    # Maestría
+    st.success("""\
+        **Maestría en Dirección de Tecnologías de la Información y Comunicaciones**  
+        Universidad Anáhuac Mayab, Campus Campeche (2017–2018)  
+        Cédula Profesional: 11492845
+    """)
+
+    # Licenciatura
+    st.info("""\
+        **Licenciatura en Informática**  
+        Instituto Tecnológico de Campeche (1990–1994)  
+        Cédula Profesional: 7297017
+    """)
 
 elif "Habilidades" in opcion:
     st.markdown('''
@@ -107,6 +126,27 @@ elif "Código" in opcion:
                 - 🛠️ Trabajo con Python, JavaScript, Java, y más.
 
                 ''')
+
+                # -----------------------
+                # Formación Académica
+                # -----------------------
+                st.markdown('''
+                ## 💼 Formación Académica ''')
+
+                # Maestría
+                st.success('''\
+                    **Maestría en Dirección de Tecnologías de la Información y Comunicaciones**  
+                    Universidad Anáhuac Mayab, Campus Campeche (2017–2018)  
+                    Cédula Profesional: 11492845
+                ''')
+
+                # Licenciatura
+                st.info('''\
+                    **Licenciatura en Informática**  
+                    Instituto Tecnológico de Campeche (1990–1994)  
+                    Cédula Profesional: 7297017
+                ''')
+                
         """, language="python")
         
     with st.expander("📄 Opción de navegación - Habilidades"):
